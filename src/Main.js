@@ -12,7 +12,7 @@ export default class Main extends Component {
     //this.handleChange = this.handleChange.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetch('http://pokeapi.salestock.net/api/v2/pokedex/national')
     .then(data => data.json())
     .then(res => res.pokemon_entries)
@@ -24,16 +24,12 @@ export default class Main extends Component {
     })
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
-    console.log('llamar api con -> ', this.state.value)
-  }
-
   handleChange = e => {
     console.log(e.target.value)
     this.setState({
       value: e.target.value
     })
+    console.log('filtrar pokemon segun ->', e.target.value)
   }
 
   render () {
@@ -42,16 +38,17 @@ export default class Main extends Component {
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange} />
         </form>
-        {
-          this.state.pokemons.map((pokemon,i) => (
-            <PokemonCard
-              key={i} 
-              url={this.state.pokemons[i].pokemon_species.url}
-              name={this.state.pokemons[i].pokemon_species.name}
-            />
-            ))
-        }
-        
+        <div className='row'>
+          {
+            this.state.pokemons.map((pokemon,i) => (
+              <PokemonCard
+                key={i} 
+                url={this.state.pokemons[i].pokemon_species.url}
+                name={this.state.pokemons[i].pokemon_species.name}
+              />
+              ))
+          }
+        </div>
       </div>
     )
   }
