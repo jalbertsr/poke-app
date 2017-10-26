@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <Switch>
         <Route exact path='/' component={Main} />
-        <Route component={NotFound} /> {/* Revisar https://stackoverflow.com/a/42929686/6334411 */}
+        <Route component={NotFound} />
       </Switch>
     )
   }
