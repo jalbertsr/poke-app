@@ -2,6 +2,10 @@
 
 ---
 
+While developing use [this extension](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi) to avoid CORS problem.
+
+---
+
 | TODO                             |      DONE         |
 |:--------------------------------:|:-----------------:|
 | route for every pokemon detail   | initial api call  |
