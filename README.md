@@ -25,3 +25,16 @@ SEE ➡️ https://stackoverflow.com/a/42929686/6334411
     <Route component={NotFound} />
   </Switch>
 ```
+
+---
+
+### URI Apis in use:
+
+###### To get all 721 pokemons
+- http://<i></i>pokeapi.salestock.net/api/v2/pokedex/national
+
+###### To get info about a pokemon
+- http://<i></i>pokeapi.salestock.net/api/v2/pokemon-species/<%ID%>
+
+###### To get the image/gif of the pokemon
+- http://<i></i>pokestadium.com/sprites/xy/<%POKEMON_NAME%>.gif
