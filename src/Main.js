@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PokemonCard from './PokemonCard'
+import { Input, Pagination } from 'antd'
 
 export default class Main extends Component {
   constructor () {
@@ -7,7 +8,8 @@ export default class Main extends Component {
 
     this.state = {
       value: '',
-      pokemons: []
+      pokemons: [],
+      current: 1
     }
     //this.handleChange = this.handleChange.bind(this)
   }
@@ -24,6 +26,12 @@ export default class Main extends Component {
     })
   }
 
+  onPageChange = (page) => {
+    this.setState({
+      current: page,
+    });
+  }
+
   handleChange = e => {
     console.log(e.target.value)
     this.setState({
@@ -33,22 +41,27 @@ export default class Main extends Component {
   }
 
   render () {
+    const regex = new RegExp(this.state.value,'g')
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange} />
+        <Input onChange={this.handleChange} />
         </form>
         <div className='row'>
           {
-            this.state.pokemons.map((pokemon,i) => (
+            this.state.pokemons
+            .filter(pokemon => pokemon.pokemon_species.name === '' || pokemon.pokemon_species.name .includes(this.state.value))
+            .map((pokemon,i) => (
               <PokemonCard
                 key={i} 
+                id={i}
                 url={this.state.pokemons[i].pokemon_species.url}
                 name={this.state.pokemons[i].pokemon_species.name}
               />
               ))
           }
         </div>
+        <Pagination current={this.state.current} onChange={this.onChange} total={50} />
       </div>
     )
   }
